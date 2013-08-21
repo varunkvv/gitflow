@@ -1,7 +1,6 @@
 cmd_merge() {
 
 	if has "$ORIGIN/$DEVELOP_BRANCH" $(git_remote_branches); then
-		git_do fetch -q "$ORIGIN" "$BRANCH"
 		git_do fetch -q "$ORIGIN" "$DEVELOP_BRANCH"	
 		git_do push "$ORIGIN" "$DEVELOP_BRANCH"
 	fi
@@ -18,6 +17,8 @@ cmd_merge() {
 
 init() {
   require_git_repo
+  require_branch "$DEVELOP_BRANCH"
+  gitflow_has_develop_configured
   require_gitflow_initialized
   gitflow_load_settings
 }
