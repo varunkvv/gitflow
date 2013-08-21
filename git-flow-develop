@@ -17,7 +17,6 @@ cmd_merge() {
 
 init() {
   require_git_repo
-  require_branch "$DEVELOP_BRANCH"
   gitflow_has_develop_configured
   require_gitflow_initialized
   gitflow_load_settings
