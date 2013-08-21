@@ -13,7 +13,7 @@ cmd_merge() {
 	git_do checkout "$MASTER_BRANCH"
 	git_do merge --squash "$DEVELOP_BRANCH"
 	git_do commit
-	git_do merge "$DEVELOP_BRANCH"
+	#git_do merge "$DEVELOP_BRANCH"
 }
 
 init() {
