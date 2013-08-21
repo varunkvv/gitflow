@@ -1,0 +1,23 @@
+cmd_merge() {
+
+	if has "$ORIGIN/$DEVELOP_BRANCH" $(git_remote_branches); then
+		git_do fetch -q "$ORIGIN" "$BRANCH"
+		git_do fetch -q "$ORIGIN" "$DEVELOP_BRANCH"	
+		git_do push "$ORIGIN" "$DEVELOP_BRANCH"
+	fi
+	if has "$ORIGIN/$DEVELOP_BRANCH" $(git_remote_branches); then
+		require_branches_equal "$DEVELOP_BRANCH" "$ORIGIN/$DEVELOP_BRANCH"
+	fi
+
+
+	git_do checkout "$MASTER_BRANCH"
+	git_do merge --squash "$DEVELOP_BRANCH"
+	git_do commit
+	git_do merge "$DEVELOP_BRANCH"
+}
+
+init() {
+  require_git_repo
+  require_gitflow_initialized
+  gitflow_load_settings
+}
