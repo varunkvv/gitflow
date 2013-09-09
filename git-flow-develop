@@ -8,7 +8,6 @@ cmd_merge() {
 		require_branches_equal "$DEVELOP_BRANCH" "$ORIGIN/$DEVELOP_BRANCH"
 	fi
 
-
 	git_do checkout "$MASTER_BRANCH"
 	git_do merge --squash "$DEVELOP_BRANCH"
 	git_do commit
