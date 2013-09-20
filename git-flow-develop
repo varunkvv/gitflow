@@ -11,14 +11,14 @@ cmd_merge() {
 	fi
 
 	git_do checkout "$MASTER_BRANCH"
-  git_do fetch -q "$ORIGIN" "$MASTER_BRANCH 
-  git_do merge "$ORIGIN" "$MASTER_BRANCH 
+	git_do fetch -q "$ORIGIN" "$MASTER_BRANCH 
+	git_do merge "$ORIGIN" "$MASTER_BRANCH 
 	git_do merge --squash "$ORIGIN" "$DEVELOP_BRANCH"
 
 	git_do commit -n
 	#git_do merge "$DEVELOP_BRANCH"
-  git push "$ORIGIN" "$MASTER_BRANCH"
-  git checkout "$DEVELOP_BRANCH"
+	git push "$ORIGIN" "$MASTER_BRANCH"
+	git checkout "$DEVELOP_BRANCH"
 }
 
 init() {
