@@ -12,7 +12,7 @@ cmd_merge() {
 	
 
 	git_do checkout "$MASTER_BRANCH"
-	git_do fetch -q "$ORIGIN" "$MASTER_BRANCH 
+	git_do fetch -q "$ORIGIN" "$MASTER_BRANCH"
 	git_do merge "$ORIGIN" "$MASTER_BRANCH 
 	git_do merge --squash "$ORIGIN" "$DEVELOP_BRANCH"
 
