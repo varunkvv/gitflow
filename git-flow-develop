@@ -10,7 +10,6 @@ cmd_merge() {
 		require_branches_equal "$DEVELOP_BRANCH" "$ORIGIN/$DEVELOP_BRANCH"
 	fi
 	
-
 	git_do checkout "$MASTER_BRANCH"
 	git_do fetch -q "$ORIGIN" "$MASTER_BRANCH"
 	git_do merge "$ORIGIN" "$MASTER_BRANCH 
@@ -27,15 +26,4 @@ init() {
   gitflow_has_develop_configured
   require_gitflow_initialized
   gitflow_load_settings
-}
-
-
-parse_args() {
-	# parse options
-	FLAGS "$@" || exit $?
-	eval set -- "${FLAGS_ARGV}"
-
-	# read arguments into global variables
-	NAME=$1
-	BRANCH=$PREFIX$NAME
 }
