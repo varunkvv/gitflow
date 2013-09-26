@@ -1,10 +1,6 @@
+#!/bin/bash
+
 cmd_merge() {
-	#if has "$ORIGIN/$DEVELOP_BRANCH" $(git_remote_branches); then
-  #  
-	#	git_do fetch -q "$ORIGIN" "$DEVELOP_BRANCH"	
-  #  git_do merge "$ORIGIN" "$DEVELOP_BRANCH"
-	#	git_do push "$ORIGIN" "$DEVELOP_BRANCH"
-	#fi
 
 	if has "$ORIGIN/$DEVELOP_BRANCH" $(git_remote_branches); then
 		require_branches_equal "$DEVELOP_BRANCH" "$ORIGIN/$DEVELOP_BRANCH"
@@ -12,13 +8,15 @@ cmd_merge() {
 	git_do checkout "$MASTER_BRANCH"
 	git_do fetch -q "$ORIGIN" "$MASTER_BRANCH"
 	git_do merge "$ORIGIN" "$MASTER_BRANCH"
-	git_do merge --squash "$ORIGIN" "$DEVELOP_BRANCH"
+	git_do merge "$ORIGIN" "$DEVELOP_BRANCH"
 
 	git_do commit -n
 	
-	#git_do merge "$DEVELOP_BRANCH"
-	git push "$ORIGIN" "$MASTER_BRANCH"
-	git checkout "$DEVELOP_BRANCH"
+	git_do push "$ORIGIN" "$MASTER_BRANCH"
+	git_do checkout "$DEVELOP_BRANCH"
+  git_do fetch -q "$ORIGIN" "$MASTER_BRANCH"
+	git_do merge "$ORIGIN" "$MASTER_BRANCH"
+  git_do push "$ORIGIN" "$DEVELOP_BRANCH"
 }
 
 init() {
