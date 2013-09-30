@@ -6,11 +6,16 @@ cmd_merge() {
 		require_branches_equal "$DEVELOP_BRANCH" "$ORIGIN/$DEVELOP_BRANCH"
 	fi
 	git_do checkout "$MASTER_BRANCH"
-	git_do fetch -q "$ORIGIN" "$MASTER_BRANCH"
-	git_do merge "$ORIGIN" "$MASTER_BRANCH"
+  echo "fetching master"
+	git_do pull "$ORIGIN" "$MASTER_BRANCH"
+  echo "merging develop"
 	git_do merge "$ORIGIN" "$DEVELOP_BRANCH"
 
+  echo "committing"
 	git_do commit -n
+
+
+  echo "pushing to master"
 	
 	git_do push "$ORIGIN" "$MASTER_BRANCH"
 	git_do checkout "$DEVELOP_BRANCH"
