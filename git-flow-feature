@@ -482,6 +482,15 @@ avoid_accidental_cross_branch_action() {
 	return 0
 }
 
+cmd_merge_develop() {
+
+	if has "$ORIGIN/$BRANCH" $(git_remote_branches); then
+		require_branches_equal "$BRANCH" "$ORIGIN/$BRANCH"
+	fi
+  git_do pull --rebase "$ORIGIN" "$DEVELOP_BRANCH"
+}
+
+
 cmd_pull() {
 	#DEFINE_string prefix false 'alternative remote feature branch name prefix' p
 	DEFINE_boolean rebase false "pull with rebase" r
