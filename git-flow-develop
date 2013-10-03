@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+
 cmd_merge() {
 
 	if has "$ORIGIN/$DEVELOP_BRANCH" $(git_remote_branches); then
